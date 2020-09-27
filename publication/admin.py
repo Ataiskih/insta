@@ -1,3 +1,20 @@
 from django.contrib import admin
+from publication.models import Publication
 
-# Register your models here.
+
+@admin.register(Publication)
+class PublicationAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'image',
+        'author',
+        'description',
+        'created',
+        'updated',
+        'deleted',
+    ]
+    fields = [
+        'image',
+        'author',
+        'description',
+    ]

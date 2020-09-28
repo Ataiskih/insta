@@ -33,8 +33,16 @@ class BaseAbstractModel(models.Model):
 
 class Profile(BaseAbstractModel):
     user = models.OneToOneField(
-        User, on_delete=models.SET_NULL,
-        blank=True, null=True,
+        User,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
         related_name='profile',
         verbose_name='User'
+    )
+    subscription = models.ManyToManyField(
+        User,
+        blank=True,
+        related_name='subscriber',
+        verbose_name='Subscrioption'
     )

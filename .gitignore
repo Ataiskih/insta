@@ -2,3 +2,5 @@ insta/__pycache__
 __pycache__
 insta/settings.py
 media/
+venv/
+insta/insta/__pycache__

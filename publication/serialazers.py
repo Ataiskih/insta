@@ -12,4 +12,3 @@ class PublicationSerialazer(ModelSerializer):
             'description',
             'created',
         ]
-        

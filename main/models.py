@@ -31,6 +31,7 @@ class BaseAbstractModel(models.Model):
     class Meta:
         abstract = True
 
+
 class Profile(BaseAbstractModel):
     user = models.OneToOneField(
         User,
@@ -45,4 +46,14 @@ class Profile(BaseAbstractModel):
         blank=True,
         related_name='subscriber',
         verbose_name='Subscrioption'
+    )
+    description = models.CharField(
+        max_length=5000,
+        null=True,
+        blank=True,
+        verbose_name='About me'
+    )
+    photo = models.ImageField(
+        upload_to='profiles',
+        default='/icon/default_icon.jpg/'
     )

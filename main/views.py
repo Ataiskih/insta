@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from rest_framework.generics import (
-    RetrieveAPIView, 
+    RetrieveAPIView,
     ListAPIView
 )
 from main.serialazers import (
@@ -28,7 +28,7 @@ class UserRetriveView(RetrieveAPIView):
 
 class FollowingListView(ListAPIView):
     serializer_class = UserListSerialazer
-    
+
     def get_queryset(self):
         username = self.kwargs['username']
         user = User.objects.get(username=username)

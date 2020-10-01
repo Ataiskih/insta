@@ -4,3 +4,4 @@ insta/settings.py
 media/
 venv/
 insta/insta/__pycache__
+.vscode

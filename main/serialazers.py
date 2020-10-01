@@ -1,5 +1,7 @@
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from main.models import Profile
+User = get_user_model()
 
 
 class ProfileUserSeialazer(serializers.ModelSerializer):
@@ -24,3 +26,45 @@ class ProfileUserSeialazer(serializers.ModelSerializer):
 
     def get_subscription_count(self, obj):
         return obj.subscription.all().count()
+
+
+class UserSeialazer(serializers.ModelSerializer):
+    publication_count = serializers.SerializerMethodField()
+    subscriber_count = serializers.SerializerMethodField()
+    subscription_count = serializers.SerializerMethodField()
+
+    
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'publication_count',
+            'subscriber_count',
+            'subscription_count',
+        ]
+    
+    def get_subscription_count(self, obj):
+        return obj.profile.subscription.all().count()
+    
+    def get_subscriber_count(self, obj):
+        return obj.subscriber.all().count()
+
+    def get_publication_count(self, obj):
+        return obj.publication.filter(deleted=False).count()
+    
+    def get_description(self, obj):
+        return obj.profile.description
+
+
+class UserListSerialazer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+        ]

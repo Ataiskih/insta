@@ -13,4 +13,5 @@ class ProfileAdmin(admin.ModelAdmin):
     ]
     fields = [
         'user',
+        'subscription',
     ]
